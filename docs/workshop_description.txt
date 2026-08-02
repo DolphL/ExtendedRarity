@@ -1,0 +1,45 @@
+[h1]Extended Rarity — new EPIC and MYTHIC rarity tiers[/h1]
+
+[b]This is not a regular Workshop mod![/b] Extended Rarity is a BepInEx (DLL) mod and cannot be distributed through the Workshop. This page is a signpost.
+
+[h2]Download & install instructions:[/h2]
+https://github.com/YOUR_GITHUB/ExtendedRarity
+
+[h2]What it does[/h2]
+Adds two new rarity tiers on top of Common / Uncommon / Rare:
+[list]
+[*][b]EPIC[/b] — red
+[*][b]MYTHIC[/b] — purple
+[/list]
+Paint any vehicle, turret or weapon with the new tiers in the loadout menu (hotkeys 5 and 6), and they will spawn in battle as ultra-rare finds. Colors, labels and spawn chances are fully configurable.
+
+[h2]Requirements[/h2]
+[list]
+[*]BepInEx 5.4.23.x (x64) — [b]not[/b] BepInEx 6
+[/list]
+
+Works alongside all regular Workshop mutators and content mods. Source code is available on GitHub under the MIT license.
+
+[hr][/hr]
+
+[h1]Extended Rarity — новые тиры редкости EPIC и MYTHIC[/h1]
+
+[b]Это не обычный мод мастерской![/b] Extended Rarity — это BepInEx (DLL) мод, его нельзя распространять через мастерскую. Эта страница — указатель.
+
+[h2]Скачать и инструкция по установке:[/h2]
+https://github.com/YOUR_GITHUB/ExtendedRarity
+
+[h2]Что делает[/h2]
+Добавляет два новых тира редкости поверх Common / Uncommon / Rare:
+[list]
+[*][b]EPIC[/b] — красный
+[*][b]MYTHIC[/b] — фиолетовый
+[/list]
+Красьте любую технику, турели и оружие новыми тирами в меню лоадаута (хоткеи 5 и 6) — они будут спавниться в бою как сверхредкие находки. Цвета, подписи и шансы настраиваются в конфиге.
+
+[h2]Требования[/h2]
+[list]
+[*]BepInEx 5.4.23.x (x64) — [b]не[/b] BepInEx 6
+[/list]
+
+Совместим с обычными мутаторами и контент-модами из мастерской. Исходный код открыт на GitHub под лицензией MIT.
