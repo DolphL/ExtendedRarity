@@ -7,7 +7,6 @@ A BepInEx mod for **Ravenfield** that adds two new rarity tiers on top of the va
 
 Both tiers are fully integrated: paint any vehicle, turret or weapon with them in the loadout menu, and they will spawn in battle with configurable upgrade chances, save/load correctly, and show proper colored labels on entry cards.
 
-![tiers](docs/screenshot.png)
 
 ## Features
 
