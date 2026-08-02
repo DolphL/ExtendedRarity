@@ -73,3 +73,7 @@ The interesting part of this mod is *how* the tiers are added. The game caches `
 ## License
 
 MIT
+
+## Credits
+
+Designed, tested and maintained by [Dolph](https://github.com/DolphL). Code written with AI assistance (Claude).
