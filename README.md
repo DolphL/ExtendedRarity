@@ -68,6 +68,7 @@ The interesting part of this mod is *how* the tiers are added. The game caches `
 - Ravenfield (Unity 2020.3, Mono) with BepInEx 5.4.23.x
 - Works alongside Steam Workshop mutators and content mods
 - Known limitation: the specialized bot weapon fallback path retries at Rare (inlined constant), so Epic/Mythic specialized weapons only appear on a direct high-tier roll
+- Campaigns and the official Arcade mode are unaffected and remain stable, but their chests/unlocks do not drop EPIC/MYTHIC items yet (planned)
 
 ## License
 
