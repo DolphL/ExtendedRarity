@@ -7,6 +7,7 @@ A BepInEx mod for **Ravenfield** that adds two new rarity tiers on top of the va
 
 Both tiers are fully integrated: paint any vehicle, turret or weapon with them in the loadout menu, and they will spawn in battle with configurable upgrade chances, save/load correctly, and show proper colored labels on entry cards.
 
+![tiers](docs/screenshot.png)
 
 ## Features
 
@@ -46,10 +47,20 @@ To verify, check `BepInEx/LogOutput.log` for:
 | Mythic | Label | `MYTHIC` | Card label |
 | Mythic | VehicleUpgradeChance | `0.10` | Epic -> Mythic chance on vehicle spawn |
 | Mythic | WeaponUpgradeChance | `0.05` | Epic -> Mythic chance for bot weapons |
+| SpawnChances | VehicleUncommonChance | `0.30` | Common -> Uncommon chance on vehicle spawn (vanilla value) |
+| SpawnChances | VehicleRareChance | `0.333` | Uncommon -> Rare chance on vehicle spawn (vanilla value) |
+| SpawnChances | WeaponUncommonChance | `0.25` | Common -> Uncommon chance for bot weapons (vanilla value) |
+| SpawnChances | WeaponRareChance | `0.20` | Uncommon -> Rare chance for bot weapons (vanilla value) |
 | Debug | SpawnDebug | `false` | Log every tier roll |
 | Debug | ForceEpicRolls / ForceMythicRolls | `false` | Test modes: force every roll to the given tier |
 
 With default settings, a Mythic vehicle is roughly a 1-in-200 spawn across a typical map, and a Mythic weapon on a regular bot is about 1-in-4000 — tune the chances to taste.
+
+## A note on spawn rates (v1.3)
+
+While chasing a "hidden spawn-rate bug", statistics from a 95-roll session revealed something else: **the base game secretly rolls the upgrade lottery on every vehicle spawner that has rolling enabled** - roughly 30% of spawns upgrade to Uncommon, a third of those to Rare. In vanilla this is invisible because default slots have no Uncommon/Rare vehicles assigned, so the roll silently falls back to the Common prefab. Assign vehicles to tiers (which is what this mod is for) and the vanilla lottery becomes visible - every third vehicle shows up colored.
+
+That is vanilla behavior, not a mod bug - but it is now under your control: the `[SpawnChances]` section exposes the base rates vanilla hard-codes. Want colored vehicles to feel rare again? Set `VehicleUncommonChance = 0.10`.
 
 ## How it works
 
@@ -68,12 +79,7 @@ The interesting part of this mod is *how* the tiers are added. The game caches `
 - Ravenfield (Unity 2020.3, Mono) with BepInEx 5.4.23.x
 - Works alongside Steam Workshop mutators and content mods
 - Known limitation: the specialized bot weapon fallback path retries at Rare (inlined constant), so Epic/Mythic specialized weapons only appear on a direct high-tier roll
-- Campaigns and the official Arcade mode are unaffected and remain stable, but their chests/unlocks do not drop EPIC/MYTHIC items yet (planned)
 
 ## License
 
 MIT
-
-## Credits
-
-Designed, tested and maintained by [Dolph](https://github.com/DolphL). Code written with AI assistance (Claude).
