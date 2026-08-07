@@ -6,6 +6,6 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Cecil"><HintPath>../usercore/core/Mono.Cecil.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Mono.Cecil"><HintPath>../../libs/Mono.Cecil.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
 </Project>
