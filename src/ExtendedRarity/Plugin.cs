@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace ExtendedRarity
 {
-    [BepInPlugin("com.dolph.extendedrarity", "Extended Rarity", "1.2.0")]
+    [BepInPlugin("com.dolph.extendedrarity", "Extended Rarity", "1.3.0")]
     public class Plugin : BaseUnityPlugin
     {
         internal const RarityTier Epic = (RarityTier)3;
@@ -22,6 +22,7 @@ namespace ExtendedRarity
         internal static ConfigEntry<string> EpicLabel, MythicLabel;
         internal static ConfigEntry<float> EpicVehicleChance, EpicWeaponChance;
         internal static ConfigEntry<float> MythicVehicleChance, MythicWeaponChance;
+        internal static ConfigEntry<float> VehicleUncommonChance, VehicleRareChance, WeaponUncommonChance, WeaponRareChance;
         internal static ConfigEntry<bool> SpawnDebug;
         internal static ConfigEntry<bool> ForceEpicRolls, ForceMythicRolls;
 
@@ -50,6 +51,22 @@ namespace ExtendedRarity
                 new ConfigDescription("Chance to upgrade Epic->Mythic on vehicle spawn.", new AcceptableValueRange<float>(0f, 1f)));
             MythicWeaponChance = Config.Bind("Mythic", "WeaponUpgradeChance", 0.05f,
                 new ConfigDescription("Chance to upgrade Epic->Mythic when handing weapons to bots.", new AcceptableValueRange<float>(0f, 1f)));
+
+            VehicleUncommonChance = Config.Bind("SpawnChances", "VehicleUncommonChance", 0.3f,
+                new ConfigDescription("Chance to upgrade Common->Uncommon on vehicle spawn. "
+                    + "0.30 is the VANILLA value - yes, the base game secretly rolls this on every spawner "
+                    + "that has rolling enabled; assigning vehicles to tiers just makes it visible. "
+                    + "Lower it if you want colored vehicles to feel rare again.",
+                    new AcceptableValueRange<float>(0f, 1f)));
+            VehicleRareChance = Config.Bind("SpawnChances", "VehicleRareChance", 0.3333333f,
+                new ConfigDescription("Chance to upgrade Uncommon->Rare on vehicle spawn (vanilla: 0.333).",
+                    new AcceptableValueRange<float>(0f, 1f)));
+            WeaponUncommonChance = Config.Bind("SpawnChances", "WeaponUncommonChance", 0.25f,
+                new ConfigDescription("Chance to upgrade Common->Uncommon for bot weapons (vanilla: 0.25).",
+                    new AcceptableValueRange<float>(0f, 1f)));
+            WeaponRareChance = Config.Bind("SpawnChances", "WeaponRareChance", 0.2f,
+                new ConfigDescription("Chance to upgrade Uncommon->Rare for bot weapons (vanilla: 0.20).",
+                    new AcceptableValueRange<float>(0f, 1f)));
 
             SpawnDebug = Config.Bind("Debug", "SpawnDebug", false,
                 "Log every rarity tier roll on spawn. Turn off after debugging.");
@@ -90,13 +107,13 @@ namespace ExtendedRarity
             // is < table length, so extending the array is what makes the
             // new tiers reachable.
             RarityTierUtils.VEHICLE_ROLL_HIGHER_TIER_CHANCE_TABLE =
-                new[] { 0.3f, 0.3333333f, EpicVehicleChance.Value, MythicVehicleChance.Value };
+                new[] { VehicleUncommonChance.Value, VehicleRareChance.Value, EpicVehicleChance.Value, MythicVehicleChance.Value };
             RarityTierUtils.WEAPON_ROLL_HIGHER_TIER_CHANCE_TABLE =
-                new[] { 0.25f, 0.2f, EpicWeaponChance.Value, MythicWeaponChance.Value };
+                new[] { WeaponUncommonChance.Value, WeaponRareChance.Value, EpicWeaponChance.Value, MythicWeaponChance.Value };
 
             Log.LogInfo($"[ExtendedRarity] Tier system extended: {string.Join(", ", RarityTierUtils.AllTiers())}. " +
-                $"Vehicles: Rare->Epic {EpicVehicleChance.Value:P0}, Epic->Mythic {MythicVehicleChance.Value:P0}. " +
-                $"Weapons: Rare->Epic {EpicWeaponChance.Value:P0}, Epic->Mythic {MythicWeaponChance.Value:P0}.");
+                $"Vehicle chain: {VehicleUncommonChance.Value:P0} -> {VehicleRareChance.Value:P0} -> {EpicVehicleChance.Value:P0} -> {MythicVehicleChance.Value:P0}. " +
+                $"Weapon chain: {WeaponUncommonChance.Value:P0} -> {WeaponRareChance.Value:P0} -> {EpicWeaponChance.Value:P0} -> {MythicWeaponChance.Value:P0}.");
             Log.LogInfo("Extended Rarity loaded. Painting hotkeys: 5 = Epic, 6 = Mythic.");
         }
 
